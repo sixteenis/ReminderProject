@@ -92,12 +92,13 @@ final class ListViewController: BaseViewController {
             cell.changeView(data: data)
             cell.checkCloser = { [weak self] in
                 guard let self = self else { return }
+                let item = self.list[indexPath.row]
                 try! realm.write{
+                    item.isCheck.toggle()
                     
-                    self.realm.delete(self.list[indexPath.row])
                     
-                    tableView.reloadData()
                 }
+                tableView.reloadData()
                 
             }
             return cell

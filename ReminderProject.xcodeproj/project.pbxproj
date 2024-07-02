@@ -27,6 +27,8 @@
 		06A284EE2C3402D7008387C1 /* TodoListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284ED2C3402D7008387C1 /* TodoListModel.swift */; };
 		06A284F02C341A64008387C1 /* AddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284EF2C341A64008387C1 /* AddTodoViewController.swift */; };
 		06A284F22C34204C008387C1 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284F12C34204C008387C1 /* Placeholder.swift */; };
+		06A284F52C345153008387C1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 06A284F42C345153008387C1 /* IQKeyboardManagerSwift */; };
+		06D5CF8F2C3451C50093E55A /* ViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CF8E2C3451C50093E55A /* ViewController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,6 +64,7 @@
 		06A284ED2C3402D7008387C1 /* TodoListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListModel.swift; sourceTree = "<group>"; };
 		06A284EF2C341A64008387C1 /* AddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewController.swift; sourceTree = "<group>"; };
 		06A284F12C34204C008387C1 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
+		06D5CF8E2C3451C50093E55A /* ViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06A284E32C33F0E8008387C1 /* SnapKit in Frameworks */,
+				06A284F52C345153008387C1 /* IQKeyboardManagerSwift in Frameworks */,
 				06A284E02C33F0DB008387C1 /* RealmSwift in Frameworks */,
 				06A284DD2C33F0B5008387C1 /* Then in Frameworks */,
 			);
@@ -143,6 +147,7 @@
 			children = (
 				06A284D22C33F005008387C1 /* ReuseIdentifier+.swift */,
 				06A284E82C340098008387C1 /* Color+.swift */,
+				06D5CF8E2C3451C50093E55A /* ViewController+.swift */,
 			);
 			path = "Extension+";
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 				06A284DC2C33F0B5008387C1 /* Then */,
 				06A284DF2C33F0DB008387C1 /* RealmSwift */,
 				06A284E22C33F0E8008387C1 /* SnapKit */,
+				06A284F42C345153008387C1 /* IQKeyboardManagerSwift */,
 			);
 			productName = ReminderProject;
 			productReference = 06A284B12C33EE66008387C1 /* ReminderProject.app */;
@@ -220,6 +226,7 @@
 				06A284DB2C33F0B5008387C1 /* XCRemoteSwiftPackageReference "Then" */,
 				06A284DE2C33F0DB008387C1 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				06A284E12C33F0E8008387C1 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				06A284F32C345153008387C1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 06A284B22C33EE66008387C1 /* Products */;
 			projectDirPath = "";
@@ -256,6 +263,7 @@
 				06A284F22C34204C008387C1 /* Placeholder.swift in Sources */,
 				06A284B52C33EE66008387C1 /* AppDelegate.swift in Sources */,
 				06A284B72C33EE66008387C1 /* SceneDelegate.swift in Sources */,
+				06D5CF8F2C3451C50093E55A /* ViewController+.swift in Sources */,
 				06A284D62C33F021008387C1 /* BaseView.swift in Sources */,
 				06A284CE2C33EFB8008387C1 /* ListViewController.swift in Sources */,
 				06A284D82C33F02B008387C1 /* BaseViewController.swift in Sources */,
@@ -513,6 +521,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		06A284F32C345153008387C1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -530,6 +546,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 06A284E12C33F0E8008387C1 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		06A284F42C345153008387C1 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06A284F32C345153008387C1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

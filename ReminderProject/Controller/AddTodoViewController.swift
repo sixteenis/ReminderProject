@@ -123,7 +123,6 @@ final class AddTodoViewController: BaseViewController {
     @objc func saveButtonTapped() {
         let realm = try! Realm()
         let todo:TodoListModel
-        print( subTextView.textColor)
         if subTextView.textColor! == .placeholderClor {
             todo = TodoListModel(title: mainTextView.text, memo: nil, tag: nil, date: Date())
         }else{

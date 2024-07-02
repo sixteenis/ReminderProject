@@ -102,6 +102,22 @@ final class ListViewController: BaseViewController {
             }
             return cell
         }
+        func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let remove = UIContextualAction(style: .normal, title: "삭제") { action, view, completion in
+                try! self.realm.write{
+                    
+                    self.realm.delete(self.list[indexPath.row])
+                    
+                    tableView.reloadData()
+                }
+                
+                
+            }
+            remove.backgroundColor = .systemRed
+            remove.image = UIImage(systemName: "trash")
+            
+            return UISwipeActionsConfiguration(actions: [remove])
+        }
         
         
     }

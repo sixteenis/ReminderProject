@@ -8,20 +8,31 @@
 import UIKit
 
 import SnapKit
-class AddTodoViewController: BaseViewController {
-    let cancelButton = UIButton()
-    let navTitle = UILabel()
-    let addButton = UIButton()
+import RealmSwift
+final class AddTodoViewController: BaseViewController {
+    private let cancelButton = UIButton()
+    private let navTitle = UILabel()
+    private let addButton = UIButton()
     
-    let mainBoxView = UIView()
-    let mainTextView = UITextView()
-    let line = UIView()
-    let subTextView = UITextView()
+    private let mainBoxView = UIView()
+    private let mainTextView = UITextView()
+    private let line = UIView()
+    private let subTextView = UITextView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTextView()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        mainTextView.text = Placeholder.title
+        mainTextView.textColor = Placeholder.color
+        
+        subTextView.text = Placeholder.subTitle
+        subTextView.textColor = Placeholder.color
+        NotificationCenter.default.post(name: NSNotification.Name("DismissAddToDoView"), object: nil, userInfo: nil)
+    }
+    
     override func setUpHierarchy() {
         view.addSubview(cancelButton)
         view.addSubview(navTitle)
@@ -93,7 +104,7 @@ class AddTodoViewController: BaseViewController {
         
         subTextView.backgroundColor = .box
     }
-    func setUpTextView() {
+    private func setUpTextView() {
         mainTextView.delegate = self
         mainTextView.tag = 0
         subTextView.delegate = self
@@ -106,10 +117,22 @@ class AddTodoViewController: BaseViewController {
     }
     // MARK: - 버튼 함수 부분
     @objc func cancelButtonTapped() {
-        print(#function)
+        dismiss(animated: true)
     }
+    
     @objc func saveButtonTapped() {
-        print(#function)
+        let realm = try! Realm()
+        let todo:TodoListModel
+        print( subTextView.textColor)
+        if subTextView.textColor! == .placeholderClor {
+            todo = TodoListModel(title: mainTextView.text, memo: nil, tag: nil, date: Date())
+        }else{
+            todo = TodoListModel(title: mainTextView.text, memo: subTextView.text, tag: nil, date: Date())
+        }
+        try! realm.write {
+            realm.add(todo)
+        }
+        dismiss(animated: true)
     }
     
     // MARK: - 입력 되었는지 확인 (저장 버튼 활성화)

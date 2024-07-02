@@ -6,15 +6,31 @@
 //
 
 import UIKit
+
 import SnapKit
+import RealmSwift
+
 final class ListViewController: BaseViewController {
     private let mainLabel = UILabel()
     private let listTableView = UITableView()
     private let mainText = MainTitle.all
+    private let realm = try! Realm()
+    private var list: Results<TodoListModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.dismissAddTodoNotification(_:)),
+            name: NSNotification.Name("DismissAddToDoView"),
+            object: nil
+        )
         setUpNV()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        list = realm.objects(TodoListModel.self)
+        listTableView.reloadData()
     }
     override func setUpHierarchy() {
         view.addSubview(mainLabel)
@@ -47,7 +63,7 @@ final class ListViewController: BaseViewController {
         let item2 = UIBarButtonItem(image: UIImage(systemName: "plus"),style: .plain,  target: self, action: #selector(plusButtonTapped))
         navigationItem.setRightBarButtonItems([item1,item2], animated: true)
     }
-
+    
     
     // MARK: - 버튼 함수 부분
     @objc func filterButtonTapped() {
@@ -57,18 +73,35 @@ final class ListViewController: BaseViewController {
         let vc = AddTodoViewController()
         present(vc, animated: true)
     }
-}
-
-extension ListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+    // MARK: - 이전뷰에 이벤트 받기
+    @objc func dismissAddTodoNotification(_ notification: Notification) {
+        DispatchQueue.main.async {
+            self.listTableView.reloadData()
+        }
     }
+}
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.id, for: indexPath) as! ListTableViewCell
+    extension ListViewController: UITableViewDelegate, UITableViewDataSource {
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return list.count
+        }
         
-        return cell
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.id, for: indexPath) as! ListTableViewCell
+            let data = list[indexPath.row]
+            cell.changeView(data: data)
+            cell.checkCloser = { [weak self] in
+                guard let self = self else { return }
+                try! realm.write{
+                    
+                    self.realm.delete(self.list[indexPath.row])
+                    
+                    tableView.reloadData()
+                }
+                
+            }
+            return cell
+        }
+        
+        
     }
-    
-    
-}

@@ -16,7 +16,7 @@ final class ListTableViewCell: BaseTableViewCell {
     private let subTitle = UILabel()
     private let dateLabel = UILabel()
     private let tagLabel = UILabel()
-    
+    var checkCloser: () -> () = {}
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -65,15 +65,39 @@ final class ListTableViewCell: BaseTableViewCell {
     override func setUpView() {
         isCheck.setImage(UIImage(systemName: "circle"), for: .normal)
         isCheck.setTitleColor(.placeholderClor, for: .normal)
+        isCheck.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
         
-        mainTitle.text = "키보드 구매"
+        
         mainTitle.textColor = .textColor
         
-        subTitle.text = "예븐 키캡 알아보기"
+        subTitle.isHidden = true
         subTitle.textColor = .placeholderClor
         
-        dateLabel.text = "1231231"
-        tagLabel.text = "###@@@2213"
+        
+        dateLabel.isHidden = true
+        
+        tagLabel.isHidden = true
+    }
+    func changeView(data: TodoListModel) {
+        let image = data.isCheck ? UIImage(systemName: "circle.fill") : UIImage(systemName: "circle")
+        self.isCheck.setImage(image, for: .normal)
+        self.mainTitle.text = data.title
+        if let sub = data.memo {
+            subTitle.text = sub
+            subTitle.isHidden = false
+        }
+        if let tag = data.tag {
+            tagLabel.text = tag
+            tagLabel.isHidden = false
+        }
+        if data.date != nil{
+            dateLabel.text = data.date?.formatted()
+            dateLabel.isHidden = false
+        }
+    
+    }
+    @objc func checkButtonTapped() {
+        checkCloser()
     }
 
 }

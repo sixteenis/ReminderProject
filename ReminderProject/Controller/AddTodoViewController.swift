@@ -7,19 +7,136 @@
 
 import UIKit
 
+import SnapKit
 class AddTodoViewController: BaseViewController {
-
+    let cancelButton = UIButton()
+    let navTitle = UILabel()
+    let addButton = UIButton()
+    
+    let mainBoxView = UIView()
+    let mainTextView = UITextView()
+    let line = UIView()
+    let subTextView = UITextView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTextView()
     }
     override func setUpHierarchy() {
+        view.addSubview(cancelButton)
+        view.addSubview(navTitle)
+        view.addSubview(addButton)
         
+        view.addSubview(mainBoxView)
+        mainBoxView.addSubview(mainTextView)
+        mainBoxView.addSubview(line)
+        mainBoxView.addSubview(subTextView)
     }
     override func setUpLayout() {
-        
+        cancelButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(15)
+            make.leading.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(30)
+            make.width.equalTo(45)
+        }
+        navTitle.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(15)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(30)
+            make.width.equalTo(100)
+        }
+        addButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(15)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(30)
+            make.width.equalTo(45)
+        }
+        mainBoxView.snp.makeConstraints { make in
+            make.top.equalTo(navTitle.snp.bottom).offset(15)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(160)
+        }
+        mainTextView.snp.makeConstraints { make in
+            make.top.equalTo(mainBoxView.snp.top).inset(5)
+            make.horizontalEdges.equalTo(mainBoxView.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(40)
+        }
+        line.snp.makeConstraints { make in
+            make.top.equalTo(mainTextView.snp.bottom)
+            make.horizontalEdges.equalTo(mainBoxView.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(1)
+        }
+        subTextView.snp.makeConstraints { make in
+            make.top.equalTo(line.snp.bottom)
+            make.horizontalEdges.equalTo(mainBoxView.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(110)
+        }
     }
     override func setUpView() {
+        cancelButton.setTitle("취소", for: .normal)
+        cancelButton.setTitleColor(.blueColor, for: .normal)
+        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         
+        navTitle.text = "새로운 할 일"
+        
+        addButton.setTitle("추가", for: .normal)
+        addButton.setTitleColor(.placeholderClor, for: .normal)
+        addButton.isEnabled = false
+        addButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        
+        mainBoxView.backgroundColor = .box
+        mainBoxView.layer.cornerRadius = 15
+        
+        mainTextView.backgroundColor = .box
+        
+        line.backgroundColor = .textColor
+        
+        subTextView.backgroundColor = .box
+    }
+    func setUpTextView() {
+        mainTextView.delegate = self
+        mainTextView.tag = 0
+        subTextView.delegate = self
+        subTextView.tag = 1
+        mainTextView.text = Placeholder.title
+        mainTextView.textColor = Placeholder.color
+        
+        subTextView.text = Placeholder.subTitle
+        subTextView.textColor = Placeholder.color
+    }
+    // MARK: - 버튼 함수 부분
+    @objc func cancelButtonTapped() {
+        print(#function)
+    }
+    @objc func saveButtonTapped() {
+        print(#function)
+    }
+    
+    // MARK: - 입력 되었는지 확인 (저장 버튼 활성화)
+    func checkMainText(text: String) {
+        if text.isEmpty { //빔
+            addButton.setTitleColor(.placeholderClor, for: .normal)
+            addButton.isEnabled = false
+        }else{ //안빔
+            addButton.setTitleColor(.blueColor, for: .normal)
+            addButton.isEnabled = true
+        }
     }
 
+}
+
+extension AddTodoViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.tag == 0 && textView.textColor != Placeholder.color{
+            self.checkMainText(text: textView.text)
+        }
+    }
+    // MARK: - 누를 때
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        print(#function)
+        if textView.textColor == Placeholder.color{
+            textView.text = nil
+            textView.textColor = .textColor
+        }
+    }
 }

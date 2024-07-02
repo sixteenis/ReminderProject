@@ -16,6 +16,7 @@ enum MainTitle: String {
             return UIFont.boldSystemFont(ofSize: 30)
             
         }
+        
     }
     var color: UIColor {
         switch self {

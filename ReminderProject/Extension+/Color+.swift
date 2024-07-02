@@ -11,4 +11,5 @@ extension UIColor {
     static let textColor = UIColor.black
     static let placeholderClor = UIColor.lightGray
     static let blueColor = UIColor.systemBlue
+    static let box = UIColor.darkGray
 }

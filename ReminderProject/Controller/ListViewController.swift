@@ -54,7 +54,8 @@ final class ListViewController: BaseViewController {
         print(#function)
     }
     @objc func plusButtonTapped() {
-        print(#function)
+        let vc = AddTodoViewController()
+        present(vc, animated: true)
     }
 }
 

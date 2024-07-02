@@ -26,6 +26,7 @@
 		06A284EC2C3400E7008387C1 /* MainTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284EB2C3400E7008387C1 /* MainTitle.swift */; };
 		06A284EE2C3402D7008387C1 /* TodoListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284ED2C3402D7008387C1 /* TodoListModel.swift */; };
 		06A284F02C341A64008387C1 /* AddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284EF2C341A64008387C1 /* AddTodoViewController.swift */; };
+		06A284F22C34204C008387C1 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284F12C34204C008387C1 /* Placeholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,6 +61,7 @@
 		06A284EB2C3400E7008387C1 /* MainTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTitle.swift; sourceTree = "<group>"; };
 		06A284ED2C3402D7008387C1 /* TodoListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListModel.swift; sourceTree = "<group>"; };
 		06A284EF2C341A64008387C1 /* AddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewController.swift; sourceTree = "<group>"; };
+		06A284F12C34204C008387C1 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				06A284EB2C3400E7008387C1 /* MainTitle.swift */,
+				06A284F12C34204C008387C1 /* Placeholder.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				06A284E72C33F8D4008387C1 /* ListTableViewCell.swift in Sources */,
 				06A284EC2C3400E7008387C1 /* MainTitle.swift in Sources */,
 				06A284F02C341A64008387C1 /* AddTodoViewController.swift in Sources */,
+				06A284F22C34204C008387C1 /* Placeholder.swift in Sources */,
 				06A284B52C33EE66008387C1 /* AppDelegate.swift in Sources */,
 				06A284B72C33EE66008387C1 /* SceneDelegate.swift in Sources */,
 				06A284D62C33F021008387C1 /* BaseView.swift in Sources */,

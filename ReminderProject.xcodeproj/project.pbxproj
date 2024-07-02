@@ -9,21 +9,19 @@
 /* Begin PBXBuildFile section */
 		06A284B52C33EE66008387C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284B42C33EE66008387C1 /* AppDelegate.swift */; };
 		06A284B72C33EE66008387C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284B62C33EE66008387C1 /* SceneDelegate.swift */; };
-		06A284B92C33EE66008387C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284B82C33EE66008387C1 /* ViewController.swift */; };
-		06A284BC2C33EE66008387C1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 06A284BB2C33EE66008387C1 /* Base */; };
 		06A284BE2C33EE67008387C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A284BD2C33EE67008387C1 /* Assets.xcassets */; };
 		06A284C12C33EE67008387C1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 06A284C02C33EE67008387C1 /* Base */; };
+		06A284C92C33EE91008387C1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 06A284C82C33EE91008387C1 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06A284B12C33EE66008387C1 /* ReminderProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReminderProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A284B42C33EE66008387C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06A284B62C33EE66008387C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		06A284B82C33EE66008387C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		06A284BB2C33EE66008387C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06A284BD2C33EE67008387C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06A284C02C33EE67008387C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06A284C22C33EE67008387C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06A284C82C33EE91008387C1 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +38,7 @@
 		06A284A82C33EE66008387C1 = {
 			isa = PBXGroup;
 			children = (
+				06A284C82C33EE91008387C1 /* .gitignore */,
 				06A284B32C33EE66008387C1 /* ReminderProject */,
 				06A284B22C33EE66008387C1 /* Products */,
 			);
@@ -58,8 +57,6 @@
 			children = (
 				06A284B42C33EE66008387C1 /* AppDelegate.swift */,
 				06A284B62C33EE66008387C1 /* SceneDelegate.swift */,
-				06A284B82C33EE66008387C1 /* ViewController.swift */,
-				06A284BA2C33EE66008387C1 /* Main.storyboard */,
 				06A284BD2C33EE67008387C1 /* Assets.xcassets */,
 				06A284BF2C33EE67008387C1 /* LaunchScreen.storyboard */,
 				06A284C22C33EE67008387C1 /* Info.plist */,
@@ -125,9 +122,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A284C92C33EE91008387C1 /* .gitignore in Resources */,
 				06A284BE2C33EE67008387C1 /* Assets.xcassets in Resources */,
 				06A284C12C33EE67008387C1 /* Base in Resources */,
-				06A284BC2C33EE66008387C1 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +135,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06A284B92C33EE66008387C1 /* ViewController.swift in Sources */,
 				06A284B52C33EE66008387C1 /* AppDelegate.swift in Sources */,
 				06A284B72C33EE66008387C1 /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +143,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		06A284BA2C33EE66008387C1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				06A284BB2C33EE66008387C1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		06A284BF2C33EE67008387C1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -295,11 +283,13 @@
 				DEVELOPMENT_TEAM = G9LS4YQCM2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ReminderProject/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Reminder;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,9 +297,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Sixteenis.ReminderProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -323,11 +317,13 @@
 				DEVELOPMENT_TEAM = G9LS4YQCM2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ReminderProject/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Reminder;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,9 +331,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Sixteenis.ReminderProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

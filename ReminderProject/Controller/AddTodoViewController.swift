@@ -190,6 +190,11 @@ final class AddTodoViewController: BaseViewController {
     @objc func priortiViewTapped() {
         print(#function)
         let vc = PriorityOptionViewController()
+        vc.completion = {
+            self.priorty = $0
+            self.priortiView.changeInputTitle($1)
+            
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
     @objc func imageViewTapped() {

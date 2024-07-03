@@ -71,7 +71,8 @@ final class ListViewController: BaseViewController {
     }
     @objc func plusButtonTapped() {
         let vc = AddTodoViewController()
-        present(vc, animated: true)
+        let nv = UINavigationController(rootViewController: vc)
+        present(nv, animated: true)
     }
     // MARK: - 이전뷰에 이벤트 받기
     @objc func dismissAddTodoNotification(_ notification: Notification) {

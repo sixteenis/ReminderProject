@@ -35,6 +35,11 @@
 		06D5CF9A2C35910B0093E55A /* AddTodoTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CF992C35910B0093E55A /* AddTodoTitle.swift */; };
 		06D5CF9C2C3596A80093E55A /* OptionAddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CF9B2C3596A80093E55A /* OptionAddTodoViewController.swift */; };
 		06D5CF9F2C35970A0093E55A /* OptionAddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CF9E2C35970A0093E55A /* OptionAddTodoView.swift */; };
+		06D5CFA12C359BCA0093E55A /* BaseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CFA02C359BCA0093E55A /* BaseButtonView.swift */; };
+		06D5CFA42C359E680093E55A /* DateOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CFA32C359E680093E55A /* DateOptionViewController.swift */; };
+		06D5CFA62C359E740093E55A /* TagOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CFA52C359E740093E55A /* TagOptionViewController.swift */; };
+		06D5CFA82C359E810093E55A /* PriorityOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CFA72C359E810093E55A /* PriorityOptionViewController.swift */; };
+		06D5CFAA2C359E8D0093E55A /* ImageOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CFA92C359E8D0093E55A /* ImageOptionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +82,11 @@
 		06D5CF992C35910B0093E55A /* AddTodoTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoTitle.swift; sourceTree = "<group>"; };
 		06D5CF9B2C3596A80093E55A /* OptionAddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionAddTodoViewController.swift; sourceTree = "<group>"; };
 		06D5CF9E2C35970A0093E55A /* OptionAddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionAddTodoView.swift; sourceTree = "<group>"; };
+		06D5CFA02C359BCA0093E55A /* BaseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonView.swift; sourceTree = "<group>"; };
+		06D5CFA32C359E680093E55A /* DateOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOptionViewController.swift; sourceTree = "<group>"; };
+		06D5CFA52C359E740093E55A /* TagOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagOptionViewController.swift; sourceTree = "<group>"; };
+		06D5CFA72C359E810093E55A /* PriorityOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityOptionViewController.swift; sourceTree = "<group>"; };
+		06D5CFA92C359E8D0093E55A /* ImageOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOptionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +146,7 @@
 				06D5CF932C358AEE0093E55A /* MainListViewController.swift */,
 				06A284CD2C33EFB8008387C1 /* ListViewController.swift */,
 				06A284EF2C341A64008387C1 /* AddTodoViewController.swift */,
+				06D5CFA22C359DD20093E55A /* optionAdd */,
 				06D5CF9B2C3596A80093E55A /* OptionAddTodoViewController.swift */,
 			);
 			path = Controller;
@@ -175,6 +186,7 @@
 				06A284D52C33F021008387C1 /* BaseView.swift */,
 				06A284D72C33F02B008387C1 /* BaseViewController.swift */,
 				06A284D92C33F042008387C1 /* BaseTableViewCell.swift */,
+				06D5CFA02C359BCA0093E55A /* BaseButtonView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -195,6 +207,17 @@
 				06D5CF9E2C35970A0093E55A /* OptionAddTodoView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		06D5CFA22C359DD20093E55A /* optionAdd */ = {
+			isa = PBXGroup;
+			children = (
+				06D5CFA32C359E680093E55A /* DateOptionViewController.swift */,
+				06D5CFA52C359E740093E55A /* TagOptionViewController.swift */,
+				06D5CFA72C359E810093E55A /* PriorityOptionViewController.swift */,
+				06D5CFA92C359E8D0093E55A /* ImageOptionViewController.swift */,
+			);
+			path = optionAdd;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,13 +305,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				06A284DA2C33F042008387C1 /* BaseTableViewCell.swift in Sources */,
+				06D5CFA42C359E680093E55A /* DateOptionViewController.swift in Sources */,
 				06A284E92C340098008387C1 /* Color+.swift in Sources */,
+				06D5CFA82C359E810093E55A /* PriorityOptionViewController.swift in Sources */,
 				06A284E72C33F8D4008387C1 /* ListTableViewCell.swift in Sources */,
 				06D5CF982C358F5E0093E55A /* Image+.swift in Sources */,
 				06D5CF9C2C3596A80093E55A /* OptionAddTodoViewController.swift in Sources */,
 				06D5CF9F2C35970A0093E55A /* OptionAddTodoView.swift in Sources */,
 				06D5CF942C358AEE0093E55A /* MainListViewController.swift in Sources */,
 				06A284EC2C3400E7008387C1 /* MainTitle.swift in Sources */,
+				06D5CFAA2C359E8D0093E55A /* ImageOptionViewController.swift in Sources */,
 				06A284F02C341A64008387C1 /* AddTodoViewController.swift in Sources */,
 				06A284F22C34204C008387C1 /* Placeholder.swift in Sources */,
 				06D5CF962C358EDD0093E55A /* AddTodoTableViewCell.swift in Sources */,
@@ -298,7 +324,9 @@
 				06D5CF9A2C35910B0093E55A /* AddTodoTitle.swift in Sources */,
 				06A284D62C33F021008387C1 /* BaseView.swift in Sources */,
 				06A284CE2C33EFB8008387C1 /* ListViewController.swift in Sources */,
+				06D5CFA62C359E740093E55A /* TagOptionViewController.swift in Sources */,
 				06A284D82C33F02B008387C1 /* BaseViewController.swift in Sources */,
+				06D5CFA12C359BCA0093E55A /* BaseButtonView.swift in Sources */,
 				06A284D32C33F005008387C1 /* ReuseIdentifier+.swift in Sources */,
 				06A284EE2C3402D7008387C1 /* TodoListModel.swift in Sources */,
 			);

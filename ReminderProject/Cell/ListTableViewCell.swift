@@ -87,7 +87,7 @@ final class ListTableViewCell: BaseTableViewCell {
             subTitle.isHidden = false
         }
         if let tag = data.tag {
-            tagLabel.text = tag
+            tagLabel.text = "#" + tag
             tagLabel.isHidden = false
         }
         if data.date != nil{

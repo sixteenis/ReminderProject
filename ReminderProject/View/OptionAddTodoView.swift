@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class OptionAddTodoView: BaseView {
+final class OptionAddTodoView: BaseButtonView {
     private let maintitle = UILabel()
     private let inputTitle = UILabel()
     private let symbol = UIImageView()
@@ -30,7 +30,7 @@ final class OptionAddTodoView: BaseView {
         }
         inputTitle.snp.makeConstraints { make in
             make.centerY.equalTo(self.safeAreaLayoutGuide)
-            make.trailing.equalTo(symbol.snp.leading)
+            make.trailing.equalTo(symbol.snp.leading).offset(-15)
         }
         symbol.snp.makeConstraints { make in
             make.centerY.equalTo(self.safeAreaLayoutGuide)
@@ -56,5 +56,9 @@ final class OptionAddTodoView: BaseView {
     }
     func changeDate(type: AddTodoTitle) {
         maintitle.text = type.rawValue
+        
+    }
+    func changeInputTitle(_ text: String) {
+        self.inputTitle.text = text
     }
 }

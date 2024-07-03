@@ -1,5 +1,5 @@
 //
-//  OptionAddTodoViewController.swift
+//  PriorityOptionViewController.swift
 //  ReminderProject
 //
 //  Created by 박성민 on 7/3/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OptionAddTodoViewController: BaseViewController {
+class PriorityOptionViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

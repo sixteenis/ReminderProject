@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import RealmSwift
 final class AddTodoViewController: BaseViewController {
+    // TODO: 네비 연결해서 위에 탭바 네비로 코드 다시 작성하기
     private let cancelButton = UIButton()
     private let navTitle = UILabel()
     private let addButton = UIButton()
@@ -25,6 +26,12 @@ final class AddTodoViewController: BaseViewController {
     private let imageView = OptionAddTodoView()
     
     private let todoSetList: [AddTodoTitle] = [.date,.tag,.priority,.image] // 셀 갯수
+    
+    var date: Date?
+    var tag: String?
+    var priorty: Int?
+    var image: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,11 +157,44 @@ final class AddTodoViewController: BaseViewController {
         subTextView.textColor = Placeholder.color
         
         dateView.changeDate(type: .date)
+        dateView.addTarget(self, action: #selector(dateViewTapped), for: .touchUpInside)
         tagView.changeDate(type: .tag)
+        tagView.addTarget(self, action: #selector(tagViewTapped), for: .touchUpInside)
         priortiView.changeDate(type: .priority)
+        priortiView.addTarget(self, action: #selector(priortiViewTapped), for: .touchUpInside)
         imageView.changeDate(type: .image)
+        imageView.addTarget(self, action: #selector(imageViewTapped), for: .touchUpInside)
     }
-    
+    // MARK: - 옵션 버튼 함수 구현 부분
+    @objc func dateViewTapped() {
+        let vc = DateOptionViewController()
+        vc.completion = {
+            // TODO: date 형태 변환하기
+            self.date = $0
+            guard let date = self.date else {return}
+            self.dateView.changeInputTitle(date.formatted())
+        }
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc func tagViewTapped() {
+        let vc = TagOptionViewController()
+        vc.completion = {
+            self.tag = $0
+            self.tagView.changeInputTitle($0)
+        }
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc func priortiViewTapped() {
+        print(#function)
+        let vc = PriorityOptionViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc func imageViewTapped() {
+        print(#function)
+        let vc = ImageOptionViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
     // MARK: - 버튼 함수 부분
     @objc func cancelButtonTapped() {
         dismiss(animated: true)
@@ -164,9 +204,9 @@ final class AddTodoViewController: BaseViewController {
         let realm = try! Realm()
         let todo:TodoListModel
         if subTextView.textColor! == .placeholderClor {
-            todo = TodoListModel(title: mainTextView.text, memo: nil, tag: nil, date: Date())
+            todo = TodoListModel(title: mainTextView.text, memo: nil, tag: self.tag, date: self.date, priority: self.priorty)
         }else{
-            todo = TodoListModel(title: mainTextView.text, memo: subTextView.text, tag: nil, date: Date())
+            todo = TodoListModel(title: mainTextView.text, memo: subTextView.text, tag: self.tag, date: self.date, priority: self.priorty)
         }
         try! realm.write {
             realm.add(todo)

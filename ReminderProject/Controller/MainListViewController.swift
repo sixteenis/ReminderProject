@@ -24,6 +24,7 @@ final class MainListViewController: BaseViewController {
     }
     override func setUpView() {
         testButton.setTitle("뷰 이동", for: .normal)
+        testButton.setTitleColor(.black, for: .normal)
         testButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     @objc func buttonTapped() {

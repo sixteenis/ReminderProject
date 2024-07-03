@@ -32,6 +32,11 @@ final class ListViewController: BaseViewController {
         list = realm.objects(TodoListModel.self)
         listTableView.reloadData()
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        deleteItme()
+        
+    }
     override func setUpHierarchy() {
         view.addSubview(mainLabel)
         view.addSubview(listTableView)
@@ -62,6 +67,13 @@ final class ListViewController: BaseViewController {
         let item1 = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"),style: .plain,  target: self, action: #selector(filterButtonTapped))
         let item2 = UIBarButtonItem(image: UIImage(systemName: "plus"),style: .plain,  target: self, action: #selector(plusButtonTapped))
         navigationItem.setRightBarButtonItems([item1,item2], animated: true)
+    }
+    func deleteItme() {
+        let item = list.filter{$0.isCheck}
+        
+        try! realm.write{
+            realm.delete(item)
+        }
     }
     
     

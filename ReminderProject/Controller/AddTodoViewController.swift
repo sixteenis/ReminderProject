@@ -11,6 +11,8 @@ import SnapKit
 import RealmSwift
 final class AddTodoViewController: BaseViewController {
     // TODO: 네비 연결해서 위에 탭바 네비로 코드 다시 작성하기
+    //옵션 설정에 들갔다가 나오면 메인 설정들이 초기화되는 문제 해결하기....
+    //풀스크린으로 동작하기, 값 저장해놓기? 그외는 머가있지>?
     private let cancelButton = UIButton()
     private let navTitle = UILabel()
     private let addButton = UIButton()

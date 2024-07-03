@@ -19,6 +19,13 @@ final class AddTodoViewController: BaseViewController {
     private let line = UIView()
     private let subTextView = UITextView()
     
+    private let dateView = OptionAddTodoView()
+    private let tagView = OptionAddTodoView()
+    private let priortiView = OptionAddTodoView()
+    private let imageView = OptionAddTodoView()
+    
+    private let todoSetList: [AddTodoTitle] = [.date,.tag,.priority,.image] // 셀 갯수
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTextView()
@@ -42,6 +49,12 @@ final class AddTodoViewController: BaseViewController {
         mainBoxView.addSubview(mainTextView)
         mainBoxView.addSubview(line)
         mainBoxView.addSubview(subTextView)
+        
+        view.addSubview(dateView)
+        view.addSubview(tagView)
+        view.addSubview(priortiView)
+        view.addSubview(imageView)
+        
     }
     override func setUpLayout() {
         cancelButton.snp.makeConstraints { make in
@@ -82,6 +95,27 @@ final class AddTodoViewController: BaseViewController {
             make.horizontalEdges.equalTo(mainBoxView.safeAreaLayoutGuide).inset(10)
             make.height.equalTo(110)
         }
+        dateView.snp.makeConstraints { make in
+            make.top.equalTo(mainBoxView.snp.bottom).offset(15)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(50)
+        }
+        tagView.snp.makeConstraints { make in
+            make.top.equalTo(dateView.snp.bottom).offset(15)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(50)
+        }
+        priortiView.snp.makeConstraints { make in
+            make.top.equalTo(tagView.snp.bottom).offset(15)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(50)
+        }
+        imageView.snp.makeConstraints { make in
+            make.top.equalTo(priortiView.snp.bottom).offset(15)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(50)
+        }
+    
     }
     override func setUpView() {
         cancelButton.setTitle("취소", for: .normal)
@@ -114,7 +148,13 @@ final class AddTodoViewController: BaseViewController {
         
         subTextView.text = Placeholder.subTitle
         subTextView.textColor = Placeholder.color
+        
+        dateView.changeDate(type: .date)
+        tagView.changeDate(type: .tag)
+        priortiView.changeDate(type: .priority)
+        imageView.changeDate(type: .image)
     }
+    
     // MARK: - 버튼 함수 부분
     @objc func cancelButtonTapped() {
         dismiss(animated: true)

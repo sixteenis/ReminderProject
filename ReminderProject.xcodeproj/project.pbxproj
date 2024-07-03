@@ -29,6 +29,12 @@
 		06A284F22C34204C008387C1 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284F12C34204C008387C1 /* Placeholder.swift */; };
 		06A284F52C345153008387C1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 06A284F42C345153008387C1 /* IQKeyboardManagerSwift */; };
 		06D5CF8F2C3451C50093E55A /* ViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CF8E2C3451C50093E55A /* ViewController+.swift */; };
+		06D5CF942C358AEE0093E55A /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CF932C358AEE0093E55A /* MainListViewController.swift */; };
+		06D5CF962C358EDD0093E55A /* AddTodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CF952C358EDD0093E55A /* AddTodoTableViewCell.swift */; };
+		06D5CF982C358F5E0093E55A /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CF972C358F5E0093E55A /* Image+.swift */; };
+		06D5CF9A2C35910B0093E55A /* AddTodoTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CF992C35910B0093E55A /* AddTodoTitle.swift */; };
+		06D5CF9C2C3596A80093E55A /* OptionAddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CF9B2C3596A80093E55A /* OptionAddTodoViewController.swift */; };
+		06D5CF9F2C35970A0093E55A /* OptionAddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D5CF9E2C35970A0093E55A /* OptionAddTodoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +71,12 @@
 		06A284EF2C341A64008387C1 /* AddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewController.swift; sourceTree = "<group>"; };
 		06A284F12C34204C008387C1 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
 		06D5CF8E2C3451C50093E55A /* ViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+.swift"; sourceTree = "<group>"; };
+		06D5CF932C358AEE0093E55A /* MainListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewController.swift; sourceTree = "<group>"; };
+		06D5CF952C358EDD0093E55A /* AddTodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoTableViewCell.swift; sourceTree = "<group>"; };
+		06D5CF972C358F5E0093E55A /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
+		06D5CF992C35910B0093E55A /* AddTodoTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoTitle.swift; sourceTree = "<group>"; };
+		06D5CF9B2C3596A80093E55A /* OptionAddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionAddTodoViewController.swift; sourceTree = "<group>"; };
+		06D5CF9E2C35970A0093E55A /* OptionAddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionAddTodoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,7 @@
 				06A284CF2C33EFC4008387C1 /* Extension+ */,
 				06A284CC2C33EF8C008387C1 /* Model */,
 				06A284CB2C33EF86008387C1 /* Cell */,
+				06D5CF9D2C3596DB0093E55A /* View */,
 				06A284CA2C33EF7B008387C1 /* Controller */,
 				06A284BD2C33EE67008387C1 /* Assets.xcassets */,
 				06A284BF2C33EE67008387C1 /* LaunchScreen.storyboard */,
@@ -120,8 +133,10 @@
 		06A284CA2C33EF7B008387C1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				06D5CF932C358AEE0093E55A /* MainListViewController.swift */,
 				06A284CD2C33EFB8008387C1 /* ListViewController.swift */,
 				06A284EF2C341A64008387C1 /* AddTodoViewController.swift */,
+				06D5CF9B2C3596A80093E55A /* OptionAddTodoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -130,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				06A284E62C33F8D4008387C1 /* ListTableViewCell.swift */,
+				06D5CF952C358EDD0093E55A /* AddTodoTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -146,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				06A284D22C33F005008387C1 /* ReuseIdentifier+.swift */,
+				06D5CF972C358F5E0093E55A /* Image+.swift */,
 				06A284E82C340098008387C1 /* Color+.swift */,
 				06D5CF8E2C3451C50093E55A /* ViewController+.swift */,
 			);
@@ -167,8 +184,17 @@
 			children = (
 				06A284EB2C3400E7008387C1 /* MainTitle.swift */,
 				06A284F12C34204C008387C1 /* Placeholder.swift */,
+				06D5CF992C35910B0093E55A /* AddTodoTitle.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		06D5CF9D2C3596DB0093E55A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				06D5CF9E2C35970A0093E55A /* OptionAddTodoView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,12 +284,18 @@
 				06A284DA2C33F042008387C1 /* BaseTableViewCell.swift in Sources */,
 				06A284E92C340098008387C1 /* Color+.swift in Sources */,
 				06A284E72C33F8D4008387C1 /* ListTableViewCell.swift in Sources */,
+				06D5CF982C358F5E0093E55A /* Image+.swift in Sources */,
+				06D5CF9C2C3596A80093E55A /* OptionAddTodoViewController.swift in Sources */,
+				06D5CF9F2C35970A0093E55A /* OptionAddTodoView.swift in Sources */,
+				06D5CF942C358AEE0093E55A /* MainListViewController.swift in Sources */,
 				06A284EC2C3400E7008387C1 /* MainTitle.swift in Sources */,
 				06A284F02C341A64008387C1 /* AddTodoViewController.swift in Sources */,
 				06A284F22C34204C008387C1 /* Placeholder.swift in Sources */,
+				06D5CF962C358EDD0093E55A /* AddTodoTableViewCell.swift in Sources */,
 				06A284B52C33EE66008387C1 /* AppDelegate.swift in Sources */,
 				06A284B72C33EE66008387C1 /* SceneDelegate.swift in Sources */,
 				06D5CF8F2C3451C50093E55A /* ViewController+.swift in Sources */,
+				06D5CF9A2C35910B0093E55A /* AddTodoTitle.swift in Sources */,
 				06A284D62C33F021008387C1 /* BaseView.swift in Sources */,
 				06A284CE2C33EFB8008387C1 /* ListViewController.swift in Sources */,
 				06A284D82C33F02B008387C1 /* BaseViewController.swift in Sources */,

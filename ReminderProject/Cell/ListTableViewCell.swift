@@ -62,6 +62,12 @@ final class ListTableViewCell: BaseTableViewCell {
         }
         
     }
+
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        dateLabel.text = ""
+//    }
+    
     override func setUpView() {
         isCheck.setImage(UIImage(systemName: "circle"), for: .normal)
         isCheck.setTitleColor(.placeholderClor, for: .normal)
@@ -85,14 +91,23 @@ final class ListTableViewCell: BaseTableViewCell {
         if let sub = data.memo {
             subTitle.text = sub
             subTitle.isHidden = false
+        }else{
+            subTitle.text = nil
+            subTitle.isHidden = true
         }
         if let tag = data.tag {
             tagLabel.text = "#" + tag
             tagLabel.isHidden = false
+        }else{
+            tagLabel.text = nil
+            tagLabel.isHidden = true
         }
         if data.date != nil{
             dateLabel.text = data.date?.formatted()
             dateLabel.isHidden = false
+        }else{
+            dateLabel.text = ""
+            dateLabel.isHidden = true
         }
     
     }

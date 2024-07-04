@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06413EF52C369491006C0C9B /* TodoListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06413EF42C369491006C0C9B /* TodoListRepository.swift */; };
+		06413EF72C369F14006C0C9B /* MainList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06413EF62C369F14006C0C9B /* MainList.swift */; };
+		06413EF92C36A063006C0C9B /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06413EF82C36A063006C0C9B /* MainCollectionViewCell.swift */; };
+		06413EFB2C36B772006C0C9B /* TodoSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06413EFA2C36B772006C0C9B /* TodoSetModel.swift */; };
 		06A284B52C33EE66008387C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284B42C33EE66008387C1 /* AppDelegate.swift */; };
 		06A284B72C33EE66008387C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284B62C33EE66008387C1 /* SceneDelegate.swift */; };
 		06A284BE2C33EE67008387C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A284BD2C33EE67008387C1 /* Assets.xcassets */; };
@@ -57,6 +61,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06413EF42C369491006C0C9B /* TodoListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListRepository.swift; sourceTree = "<group>"; };
+		06413EF62C369F14006C0C9B /* MainList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainList.swift; sourceTree = "<group>"; };
+		06413EF82C36A063006C0C9B /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		06413EFA2C36B772006C0C9B /* TodoSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSetModel.swift; sourceTree = "<group>"; };
 		06A284B12C33EE66008387C1 /* ReminderProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReminderProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A284B42C33EE66008387C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06A284B62C33EE66008387C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +163,7 @@
 		06A284CB2C33EF86008387C1 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				06413EF82C36A063006C0C9B /* MainCollectionViewCell.swift */,
 				06A284E62C33F8D4008387C1 /* ListTableViewCell.swift */,
 				06D5CF952C358EDD0093E55A /* AddTodoTableViewCell.swift */,
 			);
@@ -165,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				06A284ED2C3402D7008387C1 /* TodoListModel.swift */,
+				06413EF42C369491006C0C9B /* TodoListRepository.swift */,
+				06413EFA2C36B772006C0C9B /* TodoSetModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,6 +208,7 @@
 				06A284EB2C3400E7008387C1 /* MainTitle.swift */,
 				06A284F12C34204C008387C1 /* Placeholder.swift */,
 				06D5CF992C35910B0093E55A /* AddTodoTitle.swift */,
+				06413EF62C369F14006C0C9B /* MainList.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -308,8 +320,10 @@
 				06D5CFA42C359E680093E55A /* DateOptionViewController.swift in Sources */,
 				06A284E92C340098008387C1 /* Color+.swift in Sources */,
 				06D5CFA82C359E810093E55A /* PriorityOptionViewController.swift in Sources */,
+				06413EF72C369F14006C0C9B /* MainList.swift in Sources */,
 				06A284E72C33F8D4008387C1 /* ListTableViewCell.swift in Sources */,
 				06D5CF982C358F5E0093E55A /* Image+.swift in Sources */,
+				06413EF92C36A063006C0C9B /* MainCollectionViewCell.swift in Sources */,
 				06D5CF9C2C3596A80093E55A /* OptionAddTodoViewController.swift in Sources */,
 				06D5CF9F2C35970A0093E55A /* OptionAddTodoView.swift in Sources */,
 				06D5CF942C358AEE0093E55A /* MainListViewController.swift in Sources */,
@@ -319,11 +333,13 @@
 				06A284F22C34204C008387C1 /* Placeholder.swift in Sources */,
 				06D5CF962C358EDD0093E55A /* AddTodoTableViewCell.swift in Sources */,
 				06A284B52C33EE66008387C1 /* AppDelegate.swift in Sources */,
+				06413EF52C369491006C0C9B /* TodoListRepository.swift in Sources */,
 				06A284B72C33EE66008387C1 /* SceneDelegate.swift in Sources */,
 				06D5CF8F2C3451C50093E55A /* ViewController+.swift in Sources */,
 				06D5CF9A2C35910B0093E55A /* AddTodoTitle.swift in Sources */,
 				06A284D62C33F021008387C1 /* BaseView.swift in Sources */,
 				06A284CE2C33EFB8008387C1 /* ListViewController.swift in Sources */,
+				06413EFB2C36B772006C0C9B /* TodoSetModel.swift in Sources */,
 				06D5CFA62C359E740093E55A /* TagOptionViewController.swift in Sources */,
 				06A284D82C33F02B008387C1 /* BaseViewController.swift in Sources */,
 				06D5CFA12C359BCA0093E55A /* BaseButtonView.swift in Sources */,

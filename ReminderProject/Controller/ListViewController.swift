@@ -14,27 +14,29 @@ final class ListViewController: BaseViewController {
     private let mainLabel = UILabel()
     private let listTableView = UITableView()
     private let mainText = MainTitle.all
-    private let realm = try! Realm()
+    private let todoRepository = TodoListRepository()
     private var list: Results<TodoListModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.dismissAddTodoNotification(_:)),
             name: NSNotification.Name("DismissAddToDoView"),
             object: nil
+            
         )
         setUpNV()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        list = realm.objects(TodoListModel.self)
+        list = todoRepository.fetchAll()
         listTableView.reloadData()
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        deleteItme()
         
     }
     override func setUpHierarchy() {
@@ -68,13 +70,6 @@ final class ListViewController: BaseViewController {
         let item2 = UIBarButtonItem(image: UIImage(systemName: "plus"),style: .plain,  target: self, action: #selector(plusButtonTapped))
         navigationItem.setRightBarButtonItems([item1,item2], animated: true)
     }
-    func deleteItme() {
-        let item = list.filter{$0.isCheck}
-        
-        try! realm.write{
-            realm.delete(item)
-        }
-    }
     
     
     // MARK: - 버튼 함수 부분
@@ -89,6 +84,7 @@ final class ListViewController: BaseViewController {
     // MARK: - 이전뷰에 이벤트 받기
     @objc func dismissAddTodoNotification(_ notification: Notification) {
         DispatchQueue.main.async {
+            self.list = self.todoRepository.fetchAll()
             self.listTableView.reloadData()
         }
     }
@@ -102,26 +98,25 @@ final class ListViewController: BaseViewController {
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.id, for: indexPath) as! ListTableViewCell
             let data = list[indexPath.row]
+            print(data)
             cell.changeView(data: data)
             cell.checkCloser = { [weak self] in
                 guard let self = self else { return }
                 let item = self.list[indexPath.row]
-                try! realm.write{
-                    item.isCheck.toggle()
-                    
-                    
-                }
-                tableView.reloadData()
+                todoRepository.changeItem(item)
+                cell.changeView(data: item)
+                
+//                tableView.reloadRows(at: [indexPath], with: .automatic)
                 
             }
             return cell
         }
         func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
             let remove = UIContextualAction(style: .normal, title: "삭제") { action, view, completion in
-                try! self.realm.write{
-                    
-                    self.realm.delete(self.list[indexPath.row])
-                    
+                
+                self.todoRepository.deleteItem(self.list[indexPath.row])
+                DispatchQueue.main.async {
+                    self.list = self.todoRepository.fetchAll()
                     tableView.reloadData()
                 }
                 

@@ -8,7 +8,7 @@
 import UIKit
 
 import SnapKit
-import RealmSwift
+
 final class AddTodoViewController: BaseViewController {
     // TODO: 네비 연결해서 위에 탭바 네비로 코드 다시 작성하기
     //옵션 설정에 들갔다가 나오면 메인 설정들이 초기화되는 문제 해결하기....
@@ -34,6 +34,7 @@ final class AddTodoViewController: BaseViewController {
     var priorty: Int?
     var image: String?
     
+    let todoRepository = TodoListRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +42,20 @@ final class AddTodoViewController: BaseViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        print(#function)
+        NotificationCenter.default.post(name: NSNotification.Name("DismissAddToDoView"), object: nil, userInfo: nil)
+    }
+    deinit {
         mainTextView.text = Placeholder.title
         mainTextView.textColor = Placeholder.color
-        
+
         subTextView.text = Placeholder.subTitle
         subTextView.textColor = Placeholder.color
-        NotificationCenter.default.post(name: NSNotification.Name("DismissAddToDoView"), object: nil, userInfo: nil)
+        
+        date = nil
+        tag = nil
+        priorty = nil
+        image = nil
     }
     
     override func setUpHierarchy() {
@@ -208,16 +217,13 @@ final class AddTodoViewController: BaseViewController {
     }
     
     @objc func saveButtonTapped() {
-        let realm = try! Realm()
         let todo:TodoListModel
         if subTextView.textColor! == .placeholderClor {
             todo = TodoListModel(title: mainTextView.text, memo: nil, tag: self.tag, date: self.date, priority: self.priorty)
         }else{
             todo = TodoListModel(title: mainTextView.text, memo: subTextView.text, tag: self.tag, date: self.date, priority: self.priorty)
         }
-        try! realm.write {
-            realm.add(todo)
-        }
+        todoRepository.createItem(todo)
         dismiss(animated: true)
     }
     

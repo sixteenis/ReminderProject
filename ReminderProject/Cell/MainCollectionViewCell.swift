@@ -63,13 +63,13 @@ final class MainCollectionViewCell: UICollectionViewCell {
     func setUpView() {
         rootView.backgroundColor = .box
         
-        image.tintColor = .white
+        image.tintColor = .whiteText
         
         label.font = .systemFont(ofSize: 16)
         label.textColor = .lightGray
         
         count.font = .boldSystemFont(ofSize: 30)
-        count.textColor = .white
+        count.textColor = .whiteText
         
     }
     func changeView(type: MainList) {

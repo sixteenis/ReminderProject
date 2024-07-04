@@ -47,7 +47,7 @@ final class AddTodoTableViewCell: BaseTableViewCell {
         inputTitle.textAlignment = AddTodoTitle.subTextalignment
         
         symbol.image = .arrow
-        symbol.tintColor = .white
+        symbol.tintColor = .background
     }
     func changeDate(type: AddTodoTitle) {
         maintitle.text = type.rawValue

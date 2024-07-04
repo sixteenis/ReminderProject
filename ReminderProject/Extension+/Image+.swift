@@ -10,4 +10,6 @@ import UIKit
 
 extension UIImage {
     static let arrow = UIImage(systemName: "greaterthan") // > 이거 임
+    
+    static let plus = UIImage(systemName: "plus.circle.fill") // + 이거 임
 }

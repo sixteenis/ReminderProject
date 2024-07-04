@@ -52,7 +52,7 @@ final class OptionAddTodoView: BaseButtonView {
         inputTitle.textAlignment = AddTodoTitle.subTextalignment
         
         symbol.image = .arrow
-        symbol.tintColor = .white
+        symbol.tintColor = .whiteText
     }
     func changeDate(type: AddTodoTitle) {
         maintitle.text = type.rawValue

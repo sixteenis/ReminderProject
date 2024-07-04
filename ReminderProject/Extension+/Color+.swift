@@ -14,4 +14,5 @@ extension UIColor {
     static let box = UIColor.darkGray
     
     static let whiteText = UIColor.white
+    static let background = UIColor.white
 }

@@ -62,7 +62,7 @@ final class ListViewController: BaseViewController {
         listTableView.delegate = self
         listTableView.dataSource = self
         listTableView.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.id)
-        listTableView.backgroundColor = .white
+        listTableView.backgroundColor = .background
         listTableView.rowHeight = 120
     }
     private func setUpNV() {

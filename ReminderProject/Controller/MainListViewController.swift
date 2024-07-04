@@ -8,8 +8,9 @@
 import UIKit
 import SnapKit
 final class MainListViewController: BaseViewController {
-    private let mainTitle = UILabel()
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    private let bottomView = UIView()
+    private let newlistButton = UIButton(type: .custom)
     
     let list: [MainList] = [.today,.notYet,.all,.flag,.complet]
     static func collectionViewLayout() -> UICollectionViewLayout {
@@ -26,32 +27,50 @@ final class MainListViewController: BaseViewController {
         super.viewDidLoad()
     }
     override func setUpHierarchy() {
-        view.addSubview(mainTitle)
         view.addSubview(collectionView)
+        view.addSubview(bottomView)
+        bottomView.addSubview(newlistButton)
     }
     override func setUpLayout() {
-        mainTitle.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.leading.equalTo(view.safeAreaLayoutGuide).inset(15)
-        }
         collectionView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-            make.top.equalTo(mainTitle.snp.bottom).offset(15)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(bottomView.snp.top)
+        }
+        bottomView.snp.makeConstraints { make in
+            make.bottom.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(60)
+        }
+        newlistButton.snp.makeConstraints { make in
+            make.leading.equalTo(bottomView.safeAreaLayoutGuide).inset(20)
+            make.centerY.equalTo(bottomView.safeAreaLayoutGuide)
         }
     }
     override func setUpView() {
-        mainTitle.text = "전체"
-        mainTitle.font = .boldSystemFont(ofSize: 40)
-        mainTitle.textColor = .darkGray
+        navigationItem.title = "전체"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.id)
+        
+        bottomView.backgroundColor = .background
+        
+        newlistButton.setTitle("새로운 할일", for: .normal)
+        newlistButton.titleLabel?.font = .systemFont(ofSize: 18)
+        newlistButton.setTitleColor(.blueColor, for: .normal)
+        newlistButton.setImage(.plus, for: .normal)
+        newlistButton.imageEdgeInsets = .init(top: 0, left: -10, bottom: 0, right: 0)
+        newlistButton.addTarget(self, action: #selector(newlistButtonTapped), for: .touchUpInside)
     }
     @objc func buttonTapped() {
         let vc = ListViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc func newlistButtonTapped() {
+        let vc = AddTodoViewController()
+        present(vc, animated: true)
     }
 
 }
@@ -69,5 +88,8 @@ extension MainListViewController: UICollectionViewDelegate, UICollectionViewData
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = ListViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

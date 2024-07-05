@@ -12,7 +12,7 @@ final class MainListViewController: BaseViewController {
     private let bottomView = UIView()
     private let newlistButton = UIButton(type: .custom)
     
-    let list: [MainList] = [.today,.notYet,.all,.flag,.complet]
+    let list: [MainList] = MainList.allCases
     static func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width - 30
@@ -70,7 +70,8 @@ final class MainListViewController: BaseViewController {
     }
     @objc func newlistButtonTapped() {
         let vc = AddTodoViewController()
-        present(vc, animated: true)
+        let nv = UINavigationController(rootViewController: vc)
+        present(nv, animated: true)
     }
 
 }

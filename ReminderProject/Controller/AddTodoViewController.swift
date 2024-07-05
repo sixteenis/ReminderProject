@@ -10,13 +10,6 @@ import UIKit
 import SnapKit
 
 final class AddTodoViewController: BaseViewController {
-    // TODO: 네비 연결해서 위에 탭바 네비로 코드 다시 작성하기
-    //옵션 설정에 들갔다가 나오면 메인 설정들이 초기화되는 문제 해결하기....
-    //풀스크린으로 동작하기, 값 저장해놓기? 그외는 머가있지>?
-    private let cancelButton = UIButton()
-    private let navTitle = UILabel()
-    private let addButton = UIButton()
-    
     private let mainBoxView = UIView()
     private let mainTextView = UITextView()
     private let line = UIView()
@@ -59,10 +52,6 @@ final class AddTodoViewController: BaseViewController {
     }
     
     override func setUpHierarchy() {
-        view.addSubview(cancelButton)
-        view.addSubview(navTitle)
-        view.addSubview(addButton)
-        
         view.addSubview(mainBoxView)
         mainBoxView.addSubview(mainTextView)
         mainBoxView.addSubview(line)
@@ -75,26 +64,8 @@ final class AddTodoViewController: BaseViewController {
         
     }
     override func setUpLayout() {
-        cancelButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(15)
-            make.leading.equalTo(view.safeAreaLayoutGuide).inset(10)
-            make.height.equalTo(30)
-            make.width.equalTo(45)
-        }
-        navTitle.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(15)
-            make.centerX.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(30)
-            make.width.equalTo(100)
-        }
-        addButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(15)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
-            make.height.equalTo(30)
-            make.width.equalTo(45)
-        }
         mainBoxView.snp.makeConstraints { make in
-            make.top.equalTo(navTitle.snp.bottom).offset(15)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(15)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.height.equalTo(160)
         }
@@ -136,16 +107,13 @@ final class AddTodoViewController: BaseViewController {
     
     }
     override func setUpView() {
-        cancelButton.setTitle("취소", for: .normal)
-        cancelButton.setTitleColor(.blueColor, for: .normal)
-        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        
-        navTitle.text = "새로운 할 일"
-        
-        addButton.setTitle("추가", for: .normal)
-        addButton.setTitleColor(.placeholderClor, for: .normal)
-        addButton.isEnabled = false
-        addButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        navigationItem.title = "새로운 할 일"
+        let leftItem = UIBarButtonItem(title: "취소",style: .plain,  target: self, action: #selector(cancelButtonTapped))
+        let rightItem = UIBarButtonItem(title: "추가",style: .plain,  target: self, action: #selector(saveButtonTapped))
+        navigationItem.leftBarButtonItem = leftItem
+        rightItem.tintColor = .placeholderClor
+        navigationItem.rightBarButtonItem = rightItem
+    
         
         mainBoxView.backgroundColor = .box
         mainBoxView.layer.cornerRadius = 15
@@ -230,11 +198,13 @@ final class AddTodoViewController: BaseViewController {
     // MARK: - 입력 되었는지 확인 (저장 버튼 활성화)
     func checkMainText(text: String) {
         if text.isEmpty { //빔
-            addButton.setTitleColor(.placeholderClor, for: .normal)
-            addButton.isEnabled = false
+            navigationItem.rightBarButtonItem?.tintColor = .placeholderClor
+            navigationItem.rightBarButtonItem?.isEnabled = false
+
         }else{ //안빔
-            addButton.setTitleColor(.blueColor, for: .normal)
-            addButton.isEnabled = true
+            navigationItem.rightBarButtonItem?.tintColor = .blueColor
+            navigationItem.rightBarButtonItem?.isEnabled = true
+
         }
     }
 

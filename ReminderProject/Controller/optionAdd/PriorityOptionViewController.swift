@@ -12,7 +12,7 @@ class PriorityOptionViewController: BaseViewController, UIPickerViewDataSource, 
     private let pickerView = UIPickerView()
     private var selectedPriority: Int = 0
     var completion: ((Int,String) -> ())?
-    private let priorities = ["낮음", "중간", "높음"]
+    private let priorities = ["없음","낮음", "중간", "높음"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,12 +54,14 @@ class PriorityOptionViewController: BaseViewController, UIPickerViewDataSource, 
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch priorities[row] {
-        case "낮음":
+        case "없음":
             selectedPriority = 0
-        case "중간":
+        case "낮음":
             selectedPriority = 1
-        case "높음":
+        case "중간":
             selectedPriority = 2
+        case "높음":
+            selectedPriority = 3
         default:
             selectedPriority = 0
         }

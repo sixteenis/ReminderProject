@@ -21,12 +21,7 @@ final class AddTodoViewController: BaseViewController {
     private let imageView = OptionAddTodoView()
     
     private let todoSetList: [AddTodoTitle] = [.date,.tag,.priority,.image] // 셀 갯수
-    
-    var date: Date?
-    var tag: String?
-    var priorty: Int?
-    var image: String?
-    
+    let createModel = TodoSetModel()
     let todoRepository = TodoListRepository()
     
     override func viewDidLoad() {
@@ -44,11 +39,6 @@ final class AddTodoViewController: BaseViewController {
 
         subTextView.text = Placeholder.subTitle
         subTextView.textColor = Placeholder.color
-        
-        date = nil
-        tag = nil
-        priorty = nil
-        image = nil
     }
     
     override func setUpHierarchy() {
@@ -149,16 +139,19 @@ final class AddTodoViewController: BaseViewController {
         let vc = DateOptionViewController()
         vc.completion = {
             // TODO: date 형태 변환하기
-            self.date = $0
-            guard let date = self.date else {return}
-            self.dateView.changeInputTitle(date.formatted())
+            
+            guard let date = $0 else {return}
+            self.createModel.setdate(date)
+            self.dateView.changeInputTitle(self.createModel.date)
+            //self.createModel.setdate(date)
+            //self.dateView.changeInputTitle()
         }
         navigationController?.pushViewController(vc, animated: true)
     }
     @objc func tagViewTapped() {
         let vc = TagOptionViewController()
         vc.completion = {
-            self.tag = $0
+            self.createModel.setTag($0)
             self.tagView.changeInputTitle($0)
         }
         
@@ -168,7 +161,7 @@ final class AddTodoViewController: BaseViewController {
         print(#function)
         let vc = PriorityOptionViewController()
         vc.completion = {
-            self.priorty = $0
+            self.createModel.setPriority($0)
             self.priortiView.changeInputTitle($1)
             
         }
@@ -186,11 +179,11 @@ final class AddTodoViewController: BaseViewController {
     
     @objc func saveButtonTapped() {
         let todo:TodoListModel
-        if subTextView.textColor! == .placeholderClor {
-            todo = TodoListModel(title: mainTextView.text, memo: nil, tag: self.tag, date: self.date, priority: self.priorty)
-        }else{
-            todo = TodoListModel(title: mainTextView.text, memo: subTextView.text, tag: self.tag, date: self.date, priority: self.priorty)
-        }
+        
+        todo = createModel.makeModel(mainTextView.text!)
+//        }else{
+//            todo = TodoListModel(title: mainTextView.text, memo: subTextView.text, tag: self.tag, date: self.date, priority: self.priorty)
+//        }
         todoRepository.createItem(todo)
         dismiss(animated: true)
     }
@@ -206,6 +199,9 @@ final class AddTodoViewController: BaseViewController {
             navigationItem.rightBarButtonItem?.isEnabled = true
 
         }
+    }
+    func checkCancelOk() {
+        
     }
 
 }

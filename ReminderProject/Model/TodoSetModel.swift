@@ -5,19 +5,44 @@
 //  Created by 박성민 on 7/4/24.
 //
 
-//import Foundation
-//
-//class TodoSetModel {
-//    static var title: String!
-//    static var memo: String?
-//    static var tag: String?
-//    static var date: Date?
-//    static var priority: Int?
-//    
-//    func setTitle(_ input: String){
-//        Self.title = input
-//    }
-//}
+import Foundation
+
+final class TodoSetModel {
+    private var title: String!
+    private var memo: String?
+    private var tag: String?
+    var date: String?
+    private var priority: Int?
+    private var isFinish: Bool = false // true
+    private var isFlag: Bool = false // true
+    //
+    
+    func setMemo(_ input: String){
+        self.memo = input
+    }
+    func setTag(_ input: String){
+        self.tag = input
+    }
+    func setdate(_ input: Date){
+        let format = DateFormatter()
+        format.dateFormat = "yyyy.MM.dd"
+        let result = input.formatted()
+        self.date = result
+    }
+    func setPriority(_ input: Int){
+        self.priority = input
+    }
+    func setIsFinish(_ input: Bool){
+        self.isFinish = input
+    }
+    func setFlag(_ input: Bool){
+        self.isFlag = input
+    }
+    
+    func makeModel(_ title: String) -> TodoListModel {
+        return TodoListModel(title: title, memo: self.memo, tag: self.tag, date: self.date, priority: self.priority, isFinish: self.isFinish, isFlag: self.isFlag)
+    }
+}
 
 //class TodoListModel: Object {
 //    @Persisted(primaryKey: true) var id: ObjectId

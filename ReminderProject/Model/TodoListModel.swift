@@ -13,21 +13,31 @@ class TodoListModel: Object {
     @Persisted(indexed: true) var title: String//메모제목(필수)
     @Persisted var memo: String?//메모내용(옵션)
     @Persisted var tag: String?//카테고리(옵션)
-    @Persisted var date: Date?//등록일(옵션)
+    @Persisted var date: String?//등록일(옵션)
     @Persisted var priority: Int? //우선순위
     // TODO: enum타입으로 넣어주고 싶다...
-    @Persisted var isCheck: Bool = false
+    @Persisted var isFinish: Bool
+    @Persisted var isFlag: Bool
     
-    convenience init(title: String, memo: String? = nil, tag: String? = nil, date: Date? = nil, priority: Int? = nil) {
+    convenience init(title: String, memo: String? = nil, tag: String? = nil, date: String? = nil, priority: Int? = nil, isFinish: Bool, isFlag: Bool) {
         self.init()
         self.title = title
         self.memo = memo
         self.tag = tag
         self.date = date
         self.priority = priority
+        self.isFinish = isFinish
+        self.isFlag = isFlag
     }
 
 }
+//static private var title: String!
+//static private var memo: String?
+//static private var tag: String?
+//static private var date: String?
+//static private var priority: Int?
+//static private var isFinish: Bool = false
+//static private var isFlag: Bool = false
 
 
 // MARK: - priority 타입 선언

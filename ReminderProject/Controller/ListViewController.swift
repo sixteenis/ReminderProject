@@ -11,9 +11,7 @@ import SnapKit
 import RealmSwift
 
 final class ListViewController: BaseViewController {
-    private let mainLabel = UILabel()
     private let listTableView = UITableView()
-    private let mainText = MainTitle.all
     private let todoRepository = TodoListRepository()
     private var list: Results<TodoListModel>!
     
@@ -40,30 +38,22 @@ final class ListViewController: BaseViewController {
         
     }
     override func setUpHierarchy() {
-        view.addSubview(mainLabel)
         view.addSubview(listTableView)
     }
     override func setUpLayout() {
-        mainLabel.snp.makeConstraints { make in
-            make.top.leading.equalTo(view.safeAreaLayoutGuide).inset(10)
-            make.height.equalTo(60)
-        }
         listTableView.snp.makeConstraints { make in
-            make.top.equalTo(mainLabel.snp.bottom)
-            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
     override func setUpView() {
-        mainLabel.text = mainText.rawValue
-        mainLabel.textColor = mainText.color
-        mainLabel.font = mainText.font
+        navigationItem.title = "전체"
         
         
         listTableView.delegate = self
         listTableView.dataSource = self
         listTableView.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.id)
         listTableView.backgroundColor = .background
-        listTableView.rowHeight = 120
+        listTableView.rowHeight = UITableView.automaticDimension
     }
     private func setUpNV() {
         let item1 = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"),style: .plain,  target: self, action: #selector(filterButtonTapped))

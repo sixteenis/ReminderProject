@@ -30,9 +30,8 @@ final class TodoListRepository {
     }
     func changeItem(_ data: TodoListModel) {
         try! realm.write {
-            //data.setValue(data.isCheck.toggle(), forKey: "isCheck")
-            let result = !data.isCheck
-            data.setValue(result, forKey: "isCheck")
+            let result = !data.isFinish
+            data.setValue(result, forKey: "isFinish")
         }
     }
 //    func toggleCheck(_ id: ObjectId) {

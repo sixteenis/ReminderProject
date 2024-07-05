@@ -58,7 +58,7 @@ final class OptionAddTodoView: BaseButtonView {
         maintitle.text = type.rawValue
         
     }
-    func changeInputTitle(_ text: String) {
+    func changeInputTitle(_ text: String?) {
         self.inputTitle.text = text
     }
 }

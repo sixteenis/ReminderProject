@@ -57,12 +57,12 @@ final class ListTableViewCell: BaseTableViewCell {
             make.top.equalTo(subStack.snp.top)
         }
         tagLabel.snp.makeConstraints { make in
-            make.leading.equalTo(dateLabel.snp.trailing)
+            make.leading.equalTo(dateLabel.snp.trailing).offset(10)
             make.top.equalTo(subStack.snp.top)
         }
         
     }
-
+//remake
 //    override func prepareForReuse() {
 //        super.prepareForReuse()
 //        dateLabel.text = ""
@@ -85,7 +85,7 @@ final class ListTableViewCell: BaseTableViewCell {
         tagLabel.isHidden = true
     }
     func changeView(data: TodoListModel) {
-        let image = data.isCheck ? UIImage(systemName: "circle.fill") : UIImage(systemName: "circle")
+        let image = data.isFinish ? UIImage(systemName: "circle.fill") : UIImage(systemName: "circle")
         self.isCheck.setImage(image, for: .normal)
         self.mainTitle.text = data.title
         if let sub = data.memo {
@@ -103,7 +103,7 @@ final class ListTableViewCell: BaseTableViewCell {
             tagLabel.isHidden = true
         }
         if data.date != nil{
-            dateLabel.text = data.date?.formatted()
+            dateLabel.text = data.date
             dateLabel.isHidden = false
         }else{
             dateLabel.text = ""

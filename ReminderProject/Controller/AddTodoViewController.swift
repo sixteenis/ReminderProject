@@ -26,17 +26,22 @@ final class AddTodoViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.post(name: NSNotification.Name("DismissAddToDoView"), object: nil, userInfo: nil)
         setUpTextView()
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print(#function)
-        NotificationCenter.default.post(name: NSNotification.Name("DismissAddToDoView"), object: nil, userInfo: nil)
-    }
+    // TODO: 화면을 밑으로 내려도 알람 뜨게 구현해보자!
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//            if !mainTextView.text.isEmpty && self.isMovingFromParent {
+//                checkCancelOk()
+//            }
+//        
+//        
+//    }
     deinit {
         mainTextView.text = Placeholder.title
         mainTextView.textColor = Placeholder.color
-
+        
         subTextView.text = Placeholder.subTitle
         subTextView.textColor = Placeholder.color
     }
@@ -94,7 +99,7 @@ final class AddTodoViewController: BaseViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.height.equalTo(50)
         }
-    
+        
     }
     override func setUpView() {
         navigationItem.title = "새로운 할 일"
@@ -103,7 +108,7 @@ final class AddTodoViewController: BaseViewController {
         navigationItem.leftBarButtonItem = leftItem
         rightItem.tintColor = .placeholderClor
         navigationItem.rightBarButtonItem = rightItem
-    
+        
         
         mainBoxView.backgroundColor = .box
         mainBoxView.layer.cornerRadius = 15
@@ -174,16 +179,16 @@ final class AddTodoViewController: BaseViewController {
     }
     // MARK: - 버튼 함수 부분
     @objc func cancelButtonTapped() {
-        dismiss(animated: true)
+        if mainTextView.text!.isEmpty{
+            dismiss(animated: true)
+        }else{
+            checkCancelOk()
+        }
     }
     
     @objc func saveButtonTapped() {
         let todo:TodoListModel
-        
         todo = createModel.makeModel(mainTextView.text!)
-//        }else{
-//            todo = TodoListModel(title: mainTextView.text, memo: subTextView.text, tag: self.tag, date: self.date, priority: self.priorty)
-//        }
         todoRepository.createItem(todo)
         dismiss(animated: true)
     }
@@ -193,17 +198,33 @@ final class AddTodoViewController: BaseViewController {
         if text.isEmpty { //빔
             navigationItem.rightBarButtonItem?.tintColor = .placeholderClor
             navigationItem.rightBarButtonItem?.isEnabled = false
-
+            
         }else{ //안빔
             navigationItem.rightBarButtonItem?.tintColor = .blueColor
             navigationItem.rightBarButtonItem?.isEnabled = true
-
+            
         }
     }
     func checkCancelOk() {
+        let alert = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        //2.
         
+        let delete = UIAlertAction(title: "변경 사항 폐기", style: .destructive) { _ in
+            self.dismiss(animated: true)
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        //3.
+        alert.addAction(cancel)
+        alert.addAction(delete)
+        //4
+        present(alert, animated: true)
     }
-
+    
 }
 
 extension AddTodoViewController: UITextViewDelegate {

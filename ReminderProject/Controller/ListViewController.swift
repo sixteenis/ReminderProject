@@ -53,7 +53,9 @@ final class ListViewController: BaseViewController {
         listTableView.dataSource = self
         listTableView.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.id)
         listTableView.backgroundColor = .background
-        listTableView.rowHeight = UITableView.automaticDimension
+        listTableView.rowHeight = 120
+        // TODO: 셀의 값의 형태에 따라 셀의 높이가 변화하게 구현해보자!
+        //listTableView.rowHeight = UITableView.automaticDimension
     }
     private func setUpNV() {
         let item1 = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"),style: .plain,  target: self, action: #selector(filterButtonTapped))

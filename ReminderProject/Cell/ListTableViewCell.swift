@@ -87,7 +87,12 @@ final class ListTableViewCell: BaseTableViewCell {
     func changeView(data: TodoListModel) {
         let image = data.isFinish ? UIImage(systemName: "circle.fill") : UIImage(systemName: "circle")
         self.isCheck.setImage(image, for: .normal)
-        self.mainTitle.text = data.title
+        var priorityStrig = ""
+        for _ in 0..<data.priority {
+            priorityStrig += "!"
+        }
+        
+        self.mainTitle.text = priorityStrig + data.title
         if let sub = data.memo {
             subTitle.text = sub
             subTitle.isHidden = false
@@ -96,8 +101,10 @@ final class ListTableViewCell: BaseTableViewCell {
             subTitle.isHidden = true
         }
         if let tag = data.tag {
-            tagLabel.text = "#" + tag
-            tagLabel.isHidden = false
+            if tag != "" {
+                tagLabel.text = "#" + tag
+                tagLabel.isHidden = false
+            }
         }else{
             tagLabel.text = nil
             tagLabel.isHidden = true

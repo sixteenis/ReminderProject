@@ -12,7 +12,7 @@ final class TodoSetModel {
     private var memo: String?
     private var tag: String?
     var date: String?
-    private var priority: Int?
+    private var priority: Int = 0
     private var isFinish: Bool = false // true
     private var isFlag: Bool = false // true
     //
@@ -23,11 +23,8 @@ final class TodoSetModel {
     func setTag(_ input: String){
         self.tag = input
     }
-    func setdate(_ input: Date){
-        let format = DateFormatter()
-        format.dateFormat = "yyyy.MM.dd"
-        let result = input.formatted()
-        self.date = result
+    func setdate(_ input: String){
+        self.date = input
     }
     func setPriority(_ input: Int){
         self.priority = input

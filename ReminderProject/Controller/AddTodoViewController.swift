@@ -144,12 +144,9 @@ final class AddTodoViewController: BaseViewController {
         let vc = DateOptionViewController()
         vc.completion = {
             // TODO: date 형태 변환하기
-            
             guard let date = $0 else {return}
             self.createModel.setdate(date)
             self.dateView.changeInputTitle(self.createModel.date)
-            //self.createModel.setdate(date)
-            //self.dateView.changeInputTitle()
         }
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -167,7 +164,11 @@ final class AddTodoViewController: BaseViewController {
         let vc = PriorityOptionViewController()
         vc.completion = {
             self.createModel.setPriority($0)
-            self.priortiView.changeInputTitle($1)
+            if $0 != 0 {
+                self.priortiView.changeInputTitle($1)
+            }else{
+                self.priortiView.changeInputTitle("")
+            }
             
         }
         navigationController?.pushViewController(vc, animated: true)

@@ -15,7 +15,7 @@ class TagOptionViewController: BaseViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        completion?(textFiled.text ?? "")
+        completion?(textFiled.text!)
     }
     override func setUpHierarchy() {
         view.addSubview(textFiled)

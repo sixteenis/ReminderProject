@@ -10,13 +10,14 @@ import SnapKit
 class DateOptionViewController: BaseViewController {
     private let datePicker = UIDatePicker()
     private var selectDate: Date?
-    var completion: ((Date?) -> ())?
+    var completion: ((String?) -> ())?
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        completion?(selectDate)
+        let result = formateDate(selectDate)
+        completion?(result)
     }
     override func setUpHierarchy() {
         view.addSubview(datePicker)
@@ -35,6 +36,16 @@ class DateOptionViewController: BaseViewController {
     @objc func dateChange(_ sender: UIDatePicker) {
         selectDate = sender.date
         print(#function)
+    }
+    func formateDate(_ input: Date?) -> String{
+        let format = DateFormatter()
+        format.locale = Locale(identifier: "ko_KR")
+        format.dateFormat = "yyyy.MM.dd(E)"
+        guard let input = input else { return ""}
+        let result = format.string(from: input)
+        print(result)
+        
+        return result
     }
     
 

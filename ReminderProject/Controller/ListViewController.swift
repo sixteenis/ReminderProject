@@ -13,7 +13,13 @@ import RealmSwift
 final class ListViewController: BaseViewController {
     private let listTableView = UITableView()
     private let todoRepository = TodoListRepository()
-    private var list: Results<TodoListModel>!
+    private var list: Results<TodoListModel>! {
+        didSet {
+            self.listTableView.reloadData()
+        }
+    }
+
+    private var mainList: Results<TodoListModel>!
     var listType: MainList?
     var completion: (() -> ())?
     override func viewDidLoad() {
@@ -44,7 +50,7 @@ final class ListViewController: BaseViewController {
         case nil:
             list = todoRepository.fetchToday()
         }
-        
+        mainList = list
         listTableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -81,7 +87,40 @@ final class ListViewController: BaseViewController {
     
     // MARK: - 버튼 함수 부분
     @objc func filterButtonTapped() {
-        print(#function)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let option1 = UIAlertAction(title: "우선 순위 낮음", style: .default) { _ in
+            self.list = self.mainList.where {
+                $0.priority == 1
+            }
+        }
+        
+        let option2 = UIAlertAction(title: "우선 순위 중간", style: .default) { _ in
+            self.list = self.mainList.where {
+                $0.priority == 2
+            }
+        }
+        let option3 = UIAlertAction(title: "우선 순위 높음", style: .default) { _ in
+            self.list = self.mainList.where {
+                $0.priority == 3
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alertController.addAction(option1)
+        alertController.addAction(option2)
+        alertController.addAction(option3)
+        alertController.addAction(cancelAction)
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.barButtonItem = navigationItem.rightBarButtonItem
+            popoverController.permittedArrowDirections = .up
+        }
+        
+        present(alertController, animated: true)
+            
+        
     }
 //    @objc func plusButtonTapped() {
 //        let vc = AddTodoViewController()

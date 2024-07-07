@@ -93,6 +93,7 @@ final class ListTableViewCell: BaseTableViewCell {
         }
         
         self.mainTitle.text = priorityStrig + data.title
+        
         if let sub = data.memo {
             subTitle.text = sub
             subTitle.isHidden = false

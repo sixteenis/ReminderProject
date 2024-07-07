@@ -118,6 +118,7 @@ final class AddTodoViewController: BaseViewController {
         navigationItem.leftBarButtonItem = leftItem
         rightItem.tintColor = .placeholderClor
         navigationItem.rightBarButtonItem = rightItem
+        navigationItem.rightBarButtonItem?.isEnabled = false
         
         
         mainBoxView.backgroundColor = .box
@@ -199,6 +200,7 @@ final class AddTodoViewController: BaseViewController {
     
     @objc func saveButtonTapped() {
         let todo:TodoListModel
+        createModel.setMemo(subTextView.text)
         todo = createModel.makeModel(mainTextView.text!)
         todoRepository.createItem(todo)
         

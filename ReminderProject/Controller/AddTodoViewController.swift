@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import PhotosUI
 
 final class AddTodoViewController: BaseViewController {
     private let mainBoxView = UIView()
@@ -184,10 +185,16 @@ final class AddTodoViewController: BaseViewController {
         }
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    // MARK: - 이미지 설정으로 가는 버튼 부분
     @objc func imageViewTapped() {
-        print(#function)
-        let vc = ImageOptionViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1 //여러장 선택 숫자 제한하기
+        configuration.filter = .any(of: [.screenshots, .images]) // 가져올거 필터링
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        //let vc = ImageOptionViewController()
+        navigationController?.pushViewController(picker, animated: true)
     }
     // MARK: - 버튼 함수 부분
     @objc func cancelButtonTapped() {
@@ -254,5 +261,47 @@ extension AddTodoViewController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = .textColor
         }
+    }
+}
+
+
+//extension AddTodoViewController: PassCategoryDataDelegate {
+//    func passCategoryValue(_ text: String) {
+//        categoryButton.setTitle(text, for: .normal)
+//    }
+//    
+// 
+//}
+
+// MARK: - 이미지 클릭 부분
+extension AddTodoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print(#function)
+        //dismiss(animated: true)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print(#function)
+        guard let image = info[.editedImage] as? UIImage else { return }
+        //photoImageView.image = image
+        //dismiss(animated: true)
+        
+    }
+}
+
+extension AddTodoViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        print(#function)
+        if let itemProvider = results.first?.itemProvider,
+            itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                    DispatchQueue.main.async {
+                        //self.photoImageView.image = image as? UIImage
+                    }
+                    
+                }
+            }
+        
+        //dismiss(animated: true)
+        
     }
 }

@@ -78,7 +78,7 @@ final class MainCollectionViewCell: UICollectionViewCell {
         
         label.text = type.rawValue
         
-        count.text = "10"
+        count.text = type.count
         
     }
     

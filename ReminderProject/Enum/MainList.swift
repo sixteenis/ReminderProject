@@ -42,4 +42,18 @@ enum MainList: String, CaseIterable {
             return UIImage(systemName: "checkmark")!
         }
     }
+    var count: String {
+        switch self {
+        case .today:
+            return "0"
+        case .notYet:
+            return "1"
+        case .all:
+            return "2"
+        case .flag:
+            return "3"
+        case .complet:
+            return "4"
+        }
+    }
 }

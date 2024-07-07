@@ -110,7 +110,7 @@ final class ListTableViewCell: BaseTableViewCell {
             tagLabel.isHidden = true
         }
         if data.date != nil{
-            dateLabel.text = data.date
+            dateLabel.text = String.dateFormatString(date: data.date!)
             dateLabel.isHidden = false
         }else{
             dateLabel.text = ""

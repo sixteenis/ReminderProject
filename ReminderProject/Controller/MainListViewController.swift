@@ -13,6 +13,7 @@ final class MainListViewController: BaseViewController {
     private let newlistButton = UIButton(type: .custom)
     
     let list: [MainList] = MainList.allCases
+    let repository = TodoListRepository()
     static func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width - 30
@@ -25,6 +26,7 @@ final class MainListViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        //repository.fetchToday()
     }
     override func setUpHierarchy() {
         view.addSubview(collectionView)

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 class ImageOptionViewController: BaseViewController {
 

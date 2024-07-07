@@ -146,7 +146,7 @@ final class AddTodoViewController: BaseViewController {
             // TODO: date 형태 변환하기
             guard let date = $0 else {return}
             self.createModel.setdate(date)
-            self.dateView.changeInputTitle(self.createModel.date)
+            self.dateView.changeInputTitle(String.dateFormatString(date: self.createModel.date!))
         }
         navigationController?.pushViewController(vc, animated: true)
     }

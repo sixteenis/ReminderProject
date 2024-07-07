@@ -10,7 +10,7 @@ import SnapKit
 class DateOptionViewController: BaseViewController {
     private let datePicker = UIDatePicker()
     private var selectDate: Date?
-    var completion: ((String?) -> ())?
+    var completion: ((Date?) -> ())?
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -37,15 +37,17 @@ class DateOptionViewController: BaseViewController {
         selectDate = sender.date
         print(#function)
     }
-    func formateDate(_ input: Date?) -> String{
+    func formateDate(_ input: Date?) -> Date?{
         let format = DateFormatter()
         format.locale = Locale(identifier: "ko_KR")
         format.dateFormat = "yyyy.MM.dd(E)"
-        guard let input = input else { return ""}
-        let result = format.string(from: input)
+        
+        let result = format.string(from: input ?? Date())
+        
+        let returnDate = format.date(from: result)
         print(result)
         
-        return result
+        return returnDate
     }
     
 

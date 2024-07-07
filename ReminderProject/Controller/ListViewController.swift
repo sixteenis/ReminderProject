@@ -30,7 +30,21 @@ final class ListViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        list = todoRepository.fetchAll()
+        switch listType {
+        case .today:
+            list = todoRepository.fetchToday()
+        case .notYet:
+            list = todoRepository.fetchNotyet()
+        case .all:
+            list = todoRepository.fetchAll()
+        case .flag:
+            list = todoRepository.fetchFlag()
+        case .complet:
+            list = todoRepository.fetchFinish()
+        case nil:
+            list = todoRepository.fetchToday()
+        }
+        
         listTableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -61,8 +75,7 @@ final class ListViewController: BaseViewController {
     }
     private func setUpNV() {
         let item1 = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"),style: .plain,  target: self, action: #selector(filterButtonTapped))
-        let item2 = UIBarButtonItem(image: UIImage(systemName: "plus"),style: .plain,  target: self, action: #selector(plusButtonTapped))
-        navigationItem.setRightBarButtonItems([item1,item2], animated: true)
+        navigationItem.setRightBarButton(item1, animated: true)
     }
     
     
@@ -70,11 +83,11 @@ final class ListViewController: BaseViewController {
     @objc func filterButtonTapped() {
         print(#function)
     }
-    @objc func plusButtonTapped() {
-        let vc = AddTodoViewController()
-        let nv = UINavigationController(rootViewController: vc)
-        present(nv, animated: true)
-    }
+//    @objc func plusButtonTapped() {
+//        let vc = AddTodoViewController()
+//        let nv = UINavigationController(rootViewController: vc)
+//        present(nv, animated: true)
+//    }
     // MARK: - 이전뷰에 이벤트 받기
     @objc func dismissAddTodoNotification(_ notification: Notification) {
         DispatchQueue.main.async {
@@ -118,8 +131,20 @@ final class ListViewController: BaseViewController {
             }
             remove.backgroundColor = .systemRed
             remove.image = UIImage(systemName: "trash")
+            let flag = UIContextualAction(style: .normal, title: "깃발") { action, view, completion in
+                
+                self.todoRepository.changeflag(self.list[indexPath.row])
+                DispatchQueue.main.async {
+                    self.list = self.todoRepository.fetchAll()
+                    tableView.reloadData()
+                }
+                
+                
+            }
+            flag.backgroundColor = .systemYellow
+            flag.image = UIImage(systemName: "flag.fill")
             
-            return UISwipeActionsConfiguration(actions: [remove])
+            return UISwipeActionsConfiguration(actions: [remove,flag])
         }
         
         

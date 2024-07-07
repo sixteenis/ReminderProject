@@ -92,12 +92,21 @@ final class TodoListRepository {
             realm.delete(data)
         }
     }
+
     func changeItem(_ data: TodoListModel) {
         try! realm.write {
             let result = !data.isFinish
             data.setValue(result, forKey: "isFinish")
         }
     }
+    
+    func changeflag(_ data: TodoListModel) {
+        try! realm.write {
+            let result = !data.isFlag
+            data.setValue(result, forKey: "isFlag")
+        }
+    }
+    
     //    func toggleCheck(_ id: ObjectId) {
     //        try! realm.write {
     //            realm.add(Todom, update: <#T##Realm.UpdatePolicy#>)

@@ -147,14 +147,14 @@ final class ListViewController: BaseViewController {
             let data = list[indexPath.row]
             print(data)
             cell.changeView(data: data)
+            // TODO: 버튼 누르면 그게 없어져서 팅기는 문제 해결하기~~~~~
             cell.checkCloser = { [weak self] in
                 guard let self = self else { return }
                 let item = self.list[indexPath.row]
                 todoRepository.changeItem(item)
                 cell.changeView(data: item)
-                
-//                tableView.reloadRows(at: [indexPath], with: .automatic)
-                
+                tableView.reloadData()
+                //tableView.reloadRows(at: [indexPath], with: .automatic)
             }
             return cell
         }

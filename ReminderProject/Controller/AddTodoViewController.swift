@@ -23,6 +23,7 @@ final class AddTodoViewController: BaseViewController {
     private let todoSetList: [AddTodoTitle] = [.date,.tag,.priority,.image] // 셀 갯수
     let createModel = TodoSetModel()
     let todoRepository = TodoListRepository()
+    var completion: (() -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +33,27 @@ final class AddTodoViewController: BaseViewController {
     // TODO: 화면을 밑으로 내려도 알람 뜨게 구현해보자!
 //    override func viewWillDisappear(_ animated: Bool) {
 //        super.viewWillDisappear(animated)
-//            if !mainTextView.text.isEmpty && self.isMovingFromParent {
-//                checkCancelOk()
-//            }
-//        
+////            if !mainTextView.text.isEmpty && self.isMovingFromParent {
+////                checkCancelOk()
+////            }
+//        print("11231231")
+//        completion?()
 //        
 //    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("11231231")
+        todoRepository.allFetch()
+        completion?()
+    }
+    
     deinit {
         mainTextView.text = Placeholder.title
         mainTextView.textColor = Placeholder.color
         
         subTextView.text = Placeholder.subTitle
         subTextView.textColor = Placeholder.color
+        
     }
     
     override func setUpHierarchy() {
@@ -180,7 +190,7 @@ final class AddTodoViewController: BaseViewController {
     }
     // MARK: - 버튼 함수 부분
     @objc func cancelButtonTapped() {
-        if mainTextView.text!.isEmpty{
+        if mainTextView.textColor == .placeholderClor || mainTextView.text!.isEmpty{
             dismiss(animated: true)
         }else{
             checkCancelOk()
@@ -191,6 +201,7 @@ final class AddTodoViewController: BaseViewController {
         let todo:TodoListModel
         todo = createModel.makeModel(mainTextView.text!)
         todoRepository.createItem(todo)
+        
         dismiss(animated: true)
     }
     

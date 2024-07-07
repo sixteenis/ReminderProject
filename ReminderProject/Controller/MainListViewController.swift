@@ -14,6 +14,7 @@ final class MainListViewController: BaseViewController {
     
     let list: [MainList] = MainList.allCases
     let repository = TodoListRepository()
+    
     static func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width - 30
@@ -26,7 +27,11 @@ final class MainListViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //repository.fetchToday()
+        repository.allFetch()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
     }
     override func setUpHierarchy() {
         view.addSubview(collectionView)
@@ -68,14 +73,20 @@ final class MainListViewController: BaseViewController {
     }
     @objc func buttonTapped() {
         let vc = ListViewController()
+        vc.completion = {
+            self.collectionView.reloadData()
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
     @objc func newlistButtonTapped() {
         let vc = AddTodoViewController()
+        vc.completion = {
+            self.collectionView.reloadData()
+        }
         let nv = UINavigationController(rootViewController: vc)
         present(nv, animated: true)
     }
-
+    
 }
 
 
@@ -87,12 +98,14 @@ extension MainListViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.id, for: indexPath) as! MainCollectionViewCell
         let data = list[indexPath.item]
-        cell.changeView(type: data)
+        let cnt = TodoListRepository.countList[indexPath.item]
+        cell.changeView(type: data, cnt: cnt)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = ListViewController()
+        vc.listType = list[indexPath.item]
         navigationController?.pushViewController(vc, animated: true)
     }
 }

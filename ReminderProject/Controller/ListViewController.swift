@@ -14,10 +14,10 @@ final class ListViewController: BaseViewController {
     private let listTableView = UITableView()
     private let todoRepository = TodoListRepository()
     private var list: Results<TodoListModel>!
-    
+    var listType: MainList?
+    var completion: (() -> ())?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.dismissAddTodoNotification(_:)),
@@ -33,9 +33,11 @@ final class ListViewController: BaseViewController {
         list = todoRepository.fetchAll()
         listTableView.reloadData()
     }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("11231231")
+        todoRepository.allFetch()
+        completion?()
     }
     override func setUpHierarchy() {
         view.addSubview(listTableView)

@@ -72,13 +72,13 @@ final class MainCollectionViewCell: UICollectionViewCell {
         count.textColor = .whiteText
         
     }
-    func changeView(type: MainList) {
+    func changeView(type: MainList, cnt: Int) {
         image.image = type.symbol
         viewImage.backgroundColor = type.color
         
         label.text = type.rawValue
         
-        count.text = type.count
+        count.text = cnt.formatted()
         
     }
     

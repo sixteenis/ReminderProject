@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import RealmSwift
+import Toast
 
 final class ListViewController: BaseViewController {
     private let listTableView = UITableView()
@@ -174,14 +175,15 @@ final class ListViewController: BaseViewController {
                 
                 self.todoRepository.changeflag(self.list[indexPath.row])
                 DispatchQueue.main.async {
-                    self.list = self.todoRepository.fetchAll()
+                    //self.list = self.todoRepository.fetchAll()
+                    self.view.makeToast("깃발 설정 완료!")
                     tableView.reloadData()
                 }
                 
                 
             }
             flag.backgroundColor = .systemYellow
-            flag.image = UIImage(systemName: "flag.fill")
+            flag.image = UIImage(systemName: self.list[indexPath.row].isFlag ? "flag.fill" : "flag")
             
             return UISwipeActionsConfiguration(actions: [remove,flag])
         }

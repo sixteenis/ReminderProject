@@ -12,6 +12,7 @@
 		06413EF92C36A063006C0C9B /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06413EF82C36A063006C0C9B /* MainCollectionViewCell.swift */; };
 		06413EFB2C36B772006C0C9B /* TodoSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06413EFA2C36B772006C0C9B /* TodoSetModel.swift */; };
 		06A035CC2C3A973900CAFE3B /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A035CB2C3A973900CAFE3B /* String+.swift */; };
+		06A035CF2C3AD65200CAFE3B /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 06A035CE2C3AD65200CAFE3B /* Toast */; };
 		06A284B52C33EE66008387C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284B42C33EE66008387C1 /* AppDelegate.swift */; };
 		06A284B72C33EE66008387C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A284B62C33EE66008387C1 /* SceneDelegate.swift */; };
 		06A284BE2C33EE67008387C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A284BD2C33EE67008387C1 /* Assets.xcassets */; };
@@ -107,6 +108,7 @@
 				06A284E32C33F0E8008387C1 /* SnapKit in Frameworks */,
 				06A284F52C345153008387C1 /* IQKeyboardManagerSwift in Frameworks */,
 				06A284E02C33F0DB008387C1 /* RealmSwift in Frameworks */,
+				06A035CF2C3AD65200CAFE3B /* Toast in Frameworks */,
 				06A284DD2C33F0B5008387C1 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +259,7 @@
 				06A284DF2C33F0DB008387C1 /* RealmSwift */,
 				06A284E22C33F0E8008387C1 /* SnapKit */,
 				06A284F42C345153008387C1 /* IQKeyboardManagerSwift */,
+				06A035CE2C3AD65200CAFE3B /* Toast */,
 			);
 			productName = ReminderProject;
 			productReference = 06A284B12C33EE66008387C1 /* ReminderProject.app */;
@@ -291,6 +294,7 @@
 				06A284DE2C33F0DB008387C1 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				06A284E12C33F0E8008387C1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				06A284F32C345153008387C1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				06A035CD2C3AD65200CAFE3B /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = 06A284B22C33EE66008387C1 /* Products */;
 			projectDirPath = "";
@@ -577,6 +581,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		06A035CD2C3AD65200CAFE3B /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 		06A284DB2C33F0B5008387C1 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then.git";
@@ -612,6 +624,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		06A035CE2C3AD65200CAFE3B /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06A035CD2C3AD65200CAFE3B /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
 		06A284DC2C33F0B5008387C1 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 06A284DB2C33F0B5008387C1 /* XCRemoteSwiftPackageReference "Then" */;
